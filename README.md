@@ -1,3 +1,11 @@
+<div style="text-align:center" align="center">
+  <h1>LocalTunnel for VSCode</h1>
+  <p><em>A VSCode extension for controlling <a href="https://theboroer.github.io/localtunnel-www/">LocalTunnel</a> from the command palette.</em></p>
+  <p>
+    <a href="https://github.com/mauriciosoares/localtunnel-for-vscode/actions"><img src="https://img.shields.io/github/workflow/status/mauriciosoares/localtunnel-for-vscode/CI.svg?logo=github&label=Tests" alt="GitHub Actions CI status" /></a>
+  </p>
+</div>
+
 # localtunnel-for-vscode README
 
 This is the README for your extension "localtunnel-for-vscode". After writing up a brief description, we recommend including the following sections.
