@@ -34,6 +34,16 @@ Stops the current HTTP tunnel.
 
 * You can't start 2 tunnels at the same time
 
-### 0.0.1
+### 1.0.0
 
 Initial release of LocalTunnel for VSCode.
+
+## Contributors
+
+### Author
+
+**Mauricio Soares** - [GitHub](https://github.com/mauriciosoares)
+
+### Thanks
+
+I'd like to thank [Phil Nash](https://github.com/philnash), this extension was highly inspired by his cool [ngrok](https://github.com/philnash/ngrok-for-vscode) VS Code extension.
