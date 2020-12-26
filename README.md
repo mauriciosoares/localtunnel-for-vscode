@@ -6,68 +6,34 @@
   </p>
 </div>
 
-# localtunnel-for-vscode README
-
-This is the README for your extension "localtunnel-for-vscode". After writing up a brief description, we recommend including the following sections.
-
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### `LocalTunnel: Start`
 
-For example if there is an image subfolder under your extension project workspace:
+Start an HTTPS tunnel.
 
-\!\[feature X\]\(images/feature-x.png\)
+### Options
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+`Port`: Which port will be exposed (Default: 8000)
 
-## Requirements
+`Domain`: Custom domain for the tunnel (Default: random)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![start](https://user-images.githubusercontent.com/2321259/103156652-8efd7900-4789-11eb-9112-a03b4e3e0e3a.gif)
 
-## Extension Settings
+After you start the tunnel, you can either copy the generated link to your clipboard, or open a browser tab directly.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### `LocalTunnel: Stop`
 
-For example:
+Stops the current HTTP tunnel.
 
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+![stop](https://user-images.githubusercontent.com/2321259/103156657-958bf080-4789-11eb-8450-f9e8084eca1c.gif)
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+* If you close the workspace you started the tunnel, the tunnel will automatically shut off.
 
-## Release Notes
+* You can't start 2 tunnels at the same time
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release of LocalTunnel for VSCode.
