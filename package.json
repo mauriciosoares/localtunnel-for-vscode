@@ -24,12 +24,18 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onCommand:localtunnel-for-vscode.create-config",
 		"onCommand:localtunnel-for-vscode.start",
 		"onCommand:localtunnel-for-vscode.stop"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "localtunnel-for-vscode.create-config",
+				"title": "Create config",
+				"category": "LocalTunnel"
+			},
 			{
 				"command": "localtunnel-for-vscode.start",
 				"title": "Start",
