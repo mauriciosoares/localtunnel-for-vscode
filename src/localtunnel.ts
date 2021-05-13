@@ -113,19 +113,15 @@ export async function createConfig(context: ExtensionContext) {
     return;
   }
 
-  // const workspacePath = workspaces[0].uri.fsPath;
-  // const jsonPath = workspacePath + '/.vscode/localtunnel.json';
   const jsonPath = await getJsonPath(context);
-
-  const dialog = window.showInformationMessage('Creating default LocalTunnel config file..');
 
   const defaultConfig = {
     subdomain: 'my-cool-app',
     port: 5000
   };
 
-  const jsonConfig = JSON.stringify(defaultConfig, null, 4)
+  const jsonConfig = JSON.stringify(defaultConfig, null, 4);
   fs.writeFileSync(jsonPath, jsonConfig);
 
-  window.showInformationMessage('Default LocalTunnel config successfully created');
+  window.showInformationMessage('Default LocalTunnel configuration successfully created. You can find and update it on ./vscode/localtunnel.json');
 }
