@@ -18,11 +18,10 @@ export async function getJsonPath(context: ExtensionContext) {
   const workspaces = vscode.workspace.workspaceFolders;
   console.info('workspaces', workspaces);
 
-  if (workspaces == null) return '';
+  if (workspaces == null) { return ''; }
 
   const workspacePath = workspaces[0].uri.fsPath;
-  const jsonPath = workspacePath + '/.vscode/localtunnel.json';
-  return jsonPath;
+  return workspacePath + '/.vscode/localtunnel.json';
 }
 
 export async function start(context: ExtensionContext) {
