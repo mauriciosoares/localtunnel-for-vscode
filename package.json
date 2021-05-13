@@ -33,7 +33,7 @@
 		"commands": [
 			{
 				"command": "localtunnel-for-vscode.create-config",
-				"title": "Create config",
+				"title": "Create Workspace Configuration",
 				"category": "LocalTunnel"
 			},
 			{
