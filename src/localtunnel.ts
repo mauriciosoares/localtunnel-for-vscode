@@ -35,12 +35,13 @@ export async function start(context: ExtensionContext) {
   let port;
   const jsonPath = await getJsonPath(context);
 
-  if (fs.existsSync(jsonPath)) {
-    var json: Config = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
+  try {
+    const json: Config = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
     subdomain = json.subdomain;
     port = json.port;
     const a = 'b';
-  } else {
+  } catch (ex) {
+    console.log(ex);
     port = await getPort();
     subdomain = await getSubdomain();
   }
