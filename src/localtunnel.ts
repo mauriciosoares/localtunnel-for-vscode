@@ -2,7 +2,6 @@ import { ExtensionContext, window, env, Uri } from 'vscode';
 import * as localtunnel from 'localtunnel';
 import { Config, getPort, getSubdomain } from './configs';
 import * as fs from 'fs';
-// import { vscode } from './__mocks__/vscode';
 import * as vscode from 'vscode';
 
 export interface ITunnel {
