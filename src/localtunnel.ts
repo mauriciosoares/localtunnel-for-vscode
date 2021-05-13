@@ -104,12 +104,12 @@ export async function stop(context: ExtensionContext) {
 
 export async function createConfig(context: ExtensionContext) {
 
-  console.log('starting create config file..')
+  console.log('starting create config file..');
   const workspaces = vscode.workspace.workspaceFolders;
   console.info('workspaces', workspaces);
 
   if (workspaces == null) {
-    window.showInformationMessage('No opened workspace. Please open workspace before.');
+    window.showInformationMessage('Please open a workspace before trying to create a configuration for LocalTunnel.');
     return;
   }
 
