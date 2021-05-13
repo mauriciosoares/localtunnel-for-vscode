@@ -1,6 +1,8 @@
-import {ExtensionContext, window, env, Uri} from 'vscode';
+import { ExtensionContext, window, env, Uri } from 'vscode';
 import * as localtunnel from 'localtunnel';
-import {getPort, getSubdomain} from './configs';
+import { Config, getPort, getSubdomain } from './configs';
+import * as fs from 'fs';
+import * as vscode from 'vscode';
 
 export interface ITunnel {
   close?: () => {},
@@ -12,14 +14,37 @@ export interface ITunnelConfigs {
   subdomain?: string,
 }
 
+export async function getJsonPath(context: ExtensionContext) {
+  const workspaces = vscode.workspace.workspaceFolders;
+  console.info('workspaces', workspaces);
+
+  if (workspaces == null) { return ''; }
+
+  const workspacePath = workspaces[0].uri.fsPath;
+  return workspacePath + '/.vscode/localtunnel.json';
+}
+
 export async function start(context: ExtensionContext) {
   const currentTunnel = context.workspaceState.get('currentTunnel') as ITunnel;
   if (currentTunnel) {
     return window.showErrorMessage('Current Tunnel is already running, please stop it before starting another tunnel');
   }
 
-  const port = await getPort();
-  const subdomain = await getSubdomain();
+  let subdomain;
+  let port;
+  const jsonPath = await getJsonPath(context);
+
+  try {
+    const json: Config = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+    subdomain = json.subdomain;
+    port = json.port;
+    const a = 'b';
+  } catch (ex) {
+    console.log(ex);
+    port = await getPort();
+    subdomain = await getSubdomain();
+  }
+
   let tunnel;
 
   try {
@@ -66,7 +91,7 @@ export async function stop(context: ExtensionContext) {
 
   if (currentTunnel.close) {
     currentTunnel.close();
-    window.showInformationMessage(`Tunnel ${currentTunnel.url} Closed`); 
+    window.showInformationMessage(`Tunnel ${currentTunnel.url} Closed`);
   } else {
     window.showErrorMessage(
       `Could not stop tunnel ${currentTunnel.url}. It seems to be already closed`
@@ -74,4 +99,28 @@ export async function stop(context: ExtensionContext) {
   }
 
   context.workspaceState.update('currentTunnel', null);
+}
+
+export async function createConfig(context: ExtensionContext) {
+
+  console.log('starting create config file..');
+  const workspaces = vscode.workspace.workspaceFolders;
+  console.info('workspaces', workspaces);
+
+  if (workspaces == null) {
+    window.showInformationMessage('Please open a workspace before trying to create a configuration for LocalTunnel.');
+    return;
+  }
+
+  const jsonPath = await getJsonPath(context);
+
+  const defaultConfig = {
+    subdomain: 'my-cool-app',
+    port: 5000
+  };
+
+  const jsonConfig = JSON.stringify(defaultConfig, null, 4);
+  fs.writeFileSync(jsonPath, jsonConfig);
+
+  window.showInformationMessage('Default LocalTunnel configuration successfully created. You can find and update it on ./vscode/localtunnel.json');
 }
